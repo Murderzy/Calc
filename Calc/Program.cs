@@ -5,5 +5,7 @@
         new Calc.App.Calc().Run();
         //тут была Аня
         //hello
+
+        //homework
     }
 }
