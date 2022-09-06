@@ -10,7 +10,7 @@
         //point one
         //point three
         //point two
-        //Maksym was here
-        //And here
+        //Maksym changes
+        //Daniel changes
     }
 }
