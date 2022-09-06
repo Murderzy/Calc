@@ -4,7 +4,7 @@
     {
         new Calc.App.Calc().Run();
         //тут была Аня conflict
-        //hello
+        //hello conflict
 
         //homework
         //point one
