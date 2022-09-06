@@ -4,6 +4,7 @@
     {
         new Calc.App.Calc().Run();
         //тут была Аня conflict
+        //hello conflict
         //Аня была тут
         //hello world
 
