@@ -5,7 +5,7 @@
         new Calc.App.Calc().Run();
         //тут была Аня conflict
         //Аня была тут
-        //hello
+        //hello world
 
         //homework
         //point one
