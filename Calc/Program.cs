@@ -3,7 +3,7 @@
     private static void Main(string[] args)
     {
         new Calc.App.Calc().Run();
-        //тут была Аня
+        //тут была Аня conflict
         //hello
 
         //homework
