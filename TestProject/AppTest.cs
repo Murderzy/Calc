@@ -103,6 +103,11 @@ namespace TestProject
             //ArgumentNullException без сообщения 
             Assert.ThrowsException<ArgumentNullException>(() => RomanNumber.Parse(null!));
         }
+        [TestMethod]
+        public void RomanNumberNdigit()
+        {
+            Assert.AreEqual(0, RomanNumber.Parse("N"));// Daniel Test 
+        }
 
         }
 }
