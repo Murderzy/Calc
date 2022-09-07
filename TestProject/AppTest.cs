@@ -73,6 +73,36 @@ namespace TestProject
             //Аргумент метода SomeTest() - это действие, которое ещё не выполняется, в отличии от SomeTest(Act())
             //а значит это действие может быть выполненно средствами тестирования , в том числе с catch
 
+
+            var exc1= Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("1CMXCIX"); });
+            var exc2 = Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("MCMHCIX"); });
+            var exc3 = Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("MCMXCIф"); });
+            var exc4 = Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("1"); });
+
+            var exp1 = new ArgumentException("Invalid char 1");
+            var exp2 = new ArgumentException("Invalid char H");
+            var exp3 = new ArgumentException("Invalid char ф");
+            var exp4 = new ArgumentException("Invalid char 1");
+
+            Assert.AreEqual(exp1.Message, exc1.Message);
+            Assert.AreEqual(exp2.Message, exc2.Message);
+            Assert.AreEqual(exp3.Message, exc3.Message);
+            Assert.AreEqual(exp4.Message, exc4.Message);
+
+            Assert.AreEqual(true, 
+                Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("X X"); }).Message.StartsWith("Invalid char"));
+            //Assert.IsTrue( Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("X X"); }).Message.StartsWith("Invalid char"))
         }
-    }
+
+
+        [TestMethod]
+        public void RomanNumberParseEmpty()
+        {
+            //ArgumentException с сообщением "Empty string not allowed"
+            RomanNumber.Parse("");
+            //ArgumentNullException без сообщения 
+            RomanNumber.Parse(null!);
+        }
+
+        }
 }
