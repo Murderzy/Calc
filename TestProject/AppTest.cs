@@ -99,9 +99,9 @@ namespace TestProject
         public void RomanNumberParseEmpty()
         {
             //ArgumentException с сообщением "Empty string not allowed"
-            RomanNumber.Parse("");
+            Assert.AreEqual("Empty string not allowed",Assert.ThrowsException<ArgumentException>(() => RomanNumber.Parse("")).Message);
             //ArgumentNullException без сообщения 
-            RomanNumber.Parse(null!);
+            Assert.ThrowsException<ArgumentNullException>(() => RomanNumber.Parse(null!));
         }
 
         }

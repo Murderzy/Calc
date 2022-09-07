@@ -73,9 +73,13 @@ namespace Calc.App
 
             int[] digitValues = { 1, 5, 10, 50, 100, 500, 1000 };
 
+           
+
             int len = str.Length;
 
             int pos = str.Length - 1;//положение последней цифры
+
+            
 
             int res = 0;
             int temp = 0;
@@ -88,6 +92,7 @@ namespace Calc.App
                 {
                     throw new ArgumentException($"Invalid char {digit}");
                 }
+                
                 int val = digitValues[ind];
                 int number1 = val;
 
