@@ -176,6 +176,10 @@ namespace TestProject
 
             RomanNumber rn4 = rn1 with { Value = 20};
 
+            Assert.AreNotSame(rn4, rn1);
+            Assert.AreNotEqual(rn4, rn1);
+            Assert.IsFalse(rn4 == rn1);
+
         }
     }
 
