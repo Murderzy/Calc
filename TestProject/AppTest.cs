@@ -98,10 +98,19 @@ namespace TestProject
         [TestMethod]
         public void RomanNumberParseEmpty()
         {
-            //ArgumentException с сообщением "Empty string not allowed"
-            Assert.AreEqual("Empty string not allowed", Assert.ThrowsException<ArgumentException>(() => RomanNumber.Parse("")).Message);
-            //ArgumentNullException без сообщения 
-            Assert.ThrowsException<ArgumentNullException>(() => RomanNumber.Parse(null!));
+            // Будемо вимагати, щоб ще призводило до виключення
+            // ArgumentException з повідомленням "Empty string not allowed"
+            Assert.AreEqual(
+                "Empty string not allowed",
+                Assert.ThrowsException<ArgumentException>(
+                    () => RomanNumber.Parse("")
+                ).Message
+            );
+
+            // Parse(null!) буде ArgumentNullException без повідомлення
+            Assert.ThrowsException<ArgumentNullException>(
+                () => RomanNumber.Parse(null!)
+            );
         }
         [TestMethod]
         public void RomanNumberNdigit()
