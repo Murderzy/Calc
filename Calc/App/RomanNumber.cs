@@ -10,6 +10,7 @@ namespace Calc.App
     {
         private int value;
 
+        public int Value { get { return this.value; } set { this.value = value; } }  
 
         //Получение числа из строки
         public RomanNumber()

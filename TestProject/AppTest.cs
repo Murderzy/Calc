@@ -149,6 +149,18 @@ namespace TestProject
             Assert.AreEqual("MCMXCIX", romanNumber.ToString());
         }
 
+        //0-2022
+        [TestMethod]
+        public void RomanNumberToStringParseCrosTest()
+        {
+           
+
+            for(int n = 0;  n<=2022; ++n)
+            {
+                RomanNumber num = new(n);
+                Assert.AreEqual(n, RomanNumber.Parse(num.ToString()));
+            }
+        }
     }
 
 }
