@@ -118,7 +118,15 @@ namespace Calc.App
             int[] digitValues = { 0,1, 5, 10, 50, 100, 500, 1000 };
 
             if (str == "N") {return 0;}
-           
+
+            if (str == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (str.Length == 0)
+            {
+                throw new ArgumentException("Empty string not allowed");
+            }
 
             int len = str.Length;
 
