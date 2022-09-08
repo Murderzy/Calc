@@ -8,29 +8,34 @@ namespace Calc.App
 {
     public class RomanNumber
     {
-        private int value;
+        private int _value;
 
-        public int Value { get { return this.value; } set { this.value = value; } }  
+        public int Value
+        {
+            get { return _value; }
+            set { _value = value; } 
+        }
+        
 
         //Получение числа из строки
         public RomanNumber()
         {
-            this.value = 0; 
+            this._value = 0; 
         }
 
         public RomanNumber(int val)
         {
-            this.value = val;
+            this._value = val;
         }
 
         public override string ToString()
         {
-            if (this.value == 0)
+            if (this._value == 0)
             {
                 return "N";
             }
 
-            int n = this.value;
+            int n = this._value;
             String res = "";
             String[] parts = {"M", "CM", "D","CD","C","XC","L","XL","X","IX","V","IV","I"};
             int[] values = {1000,900,500,400,100,90,50,40,10,9,5,4,1};

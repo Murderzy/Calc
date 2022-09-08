@@ -161,6 +161,22 @@ namespace TestProject
                 Assert.AreEqual(n, RomanNumber.Parse(num.ToString()));
             }
         }
+
+        [TestMethod]
+        public void RomanNumberTypeTest()
+        {
+            RomanNumber rn1 = new() { Value = 10};
+            RomanNumber rn2 = rn1;
+            Assert.AreSame(rn1, rn2);//rn1 && rn2 ссылки на один объект 
+            RomanNumber rn3 = rn1 with { };//клонирование
+
+            Assert.AreNotSame(rn3, rn1);
+            Assert.AreEqual(rn3, rn1);
+            Assert.IsTrue(rn3== rn1);
+
+            RomanNumber rn4 = rn1 with { Value = 20};
+
+        }
     }
 
 }
