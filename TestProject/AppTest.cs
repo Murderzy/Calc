@@ -109,5 +109,48 @@ namespace TestProject
             Assert.AreEqual(0, RomanNumber.Parse("N"));// Daniel Test 
         }
 
+        [TestMethod]
+        public void RomanNumberCtor()
+        {
+            RomanNumber romanNumber = new RomanNumber();
+            Assert.IsNotNull(romanNumber);
+
+            romanNumber = new(10);
+            Assert.IsNotNull(romanNumber);
+
+            romanNumber = new(0);
+            Assert.IsNotNull(romanNumber);
         }
+
+        [TestMethod]
+        public void RomanNumberToString()
+        {
+            RomanNumber romanNumber = new();
+            Assert.AreEqual("N", romanNumber.ToString());
+
+
+
+            romanNumber = new(10);
+            Assert.AreEqual("X", romanNumber.ToString());
+
+
+
+            romanNumber = new(90);
+            Assert.AreEqual("XC", romanNumber.ToString());
+
+
+
+            romanNumber = new(20);
+            Assert.AreEqual("XX", romanNumber.ToString());
+
+
+
+            romanNumber = new(1999);
+            Assert.AreEqual("MCMXCIX", romanNumber.ToString());
+        }
+
+    }
+
 }
+
+

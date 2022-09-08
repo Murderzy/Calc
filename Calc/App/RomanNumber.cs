@@ -8,7 +8,45 @@ namespace Calc.App
 {
     public class RomanNumber
     {
+        private int value;
+
+
         //Получение числа из строки
+        public RomanNumber()
+        {
+            this.value = 0; 
+        }
+
+        public RomanNumber(int val)
+        {
+            this.value = val;
+        }
+
+        public override string ToString()
+        {
+            if (this.value == 0)
+            {
+                return "N";
+            }
+
+            int n = this.value;
+            String res = "";
+            String[] parts = {"M", "CM", "D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+            int[] values = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+
+
+            for (int j = 0; j <= parts.Length - 1; j++)
+            {
+                while (n >= values[j])
+                {
+                    n -= values[j];
+                    res += parts[j];
+
+                }
+            }
+            return res;
+        }
+
         public static int Parse(String str)
         {
             //char[] digits = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
