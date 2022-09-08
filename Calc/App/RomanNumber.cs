@@ -73,6 +73,7 @@ namespace Calc.App
 
             int[] digitValues = { 0,1, 5, 10, 50, 100, 500, 1000 };
 
+            if (str == "N") {return 0;}
            
 
             int len = str.Length;
