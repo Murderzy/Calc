@@ -17,7 +17,7 @@ namespace TestProject
         [TestMethod]
         public void RomanNumberParse1Digit()
         {
-            Assert.AreEqual(1,RomanNumber.Parse("I"), "I == 1");
+            Assert.AreEqual(1, RomanNumber.Parse("I"), "I == 1");
             Assert.AreEqual(5, RomanNumber.Parse("V"), "I == 5");
 
         }
@@ -25,28 +25,28 @@ namespace TestProject
         [TestMethod]
         public void RomanNumberParse2Digit()
         {
-            
-            Assert.AreEqual(4,RomanNumber.Parse("IV"), "IV == 4");
+
+            Assert.AreEqual(4, RomanNumber.Parse("IV"), "IV == 4");
             Assert.AreEqual(15, RomanNumber.Parse("XV"), "XV == 15");
-            
-            Assert.AreEqual(900,RomanNumber.Parse("CM"), "CM == 900");
-           
-            Assert.AreEqual(400,RomanNumber.Parse("CD"), "CD == 400");
-            
-            Assert.AreEqual(55,RomanNumber.Parse("LV"), "LV == 55");
-            Assert.AreEqual(40,RomanNumber.Parse("XL"), "XL == 40");
+
+            Assert.AreEqual(900, RomanNumber.Parse("CM"), "CM == 900");
+
+            Assert.AreEqual(400, RomanNumber.Parse("CD"), "CD == 400");
+
+            Assert.AreEqual(55, RomanNumber.Parse("LV"), "LV == 55");
+            Assert.AreEqual(40, RomanNumber.Parse("XL"), "XL == 40");
         }
 
         [TestMethod]
         public void RomanNumberParse3Digit()
         {
-           
-            Assert.AreEqual(30,RomanNumber.Parse("XXX"), "XXX == 30");
-           
-            Assert.AreEqual(1999,RomanNumber.Parse("MCMXCIX"), "MCMXCIX == 1999");
-            
-            Assert.AreEqual(401,RomanNumber.Parse("CDI"), "CDI == 4");
-            
+
+            Assert.AreEqual(30, RomanNumber.Parse("XXX"), "XXX == 30");
+
+            Assert.AreEqual(1999, RomanNumber.Parse("MCMXCIX"), "MCMXCIX == 1999");
+
+            Assert.AreEqual(401, RomanNumber.Parse("CDI"), "CDI == 4");
+
         }
 
         [TestMethod]
@@ -74,7 +74,7 @@ namespace TestProject
             //а значит это действие может быть выполненно средствами тестирования , в том числе с catch
 
 
-            var exc1= Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("1CMXCIX"); });
+            var exc1 = Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("1CMXCIX"); });
             var exc2 = Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("MCMHCIX"); });
             var exc3 = Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("MCMXCIф"); });
             var exc4 = Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("1"); });
@@ -89,7 +89,7 @@ namespace TestProject
             Assert.AreEqual(exp3.Message, exc3.Message);
             Assert.AreEqual(exp4.Message, exc4.Message);
 
-            Assert.AreEqual(true, 
+            Assert.AreEqual(true,
                 Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("X X"); }).Message.StartsWith("Invalid char"));
             //Assert.IsTrue( Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("X X"); }).Message.StartsWith("Invalid char"))
         }
@@ -99,7 +99,7 @@ namespace TestProject
         public void RomanNumberParseEmpty()
         {
             //ArgumentException с сообщением "Empty string not allowed"
-            Assert.AreEqual("Empty string not allowed",Assert.ThrowsException<ArgumentException>(() => RomanNumber.Parse("")).Message);
+            Assert.AreEqual("Empty string not allowed", Assert.ThrowsException<ArgumentException>(() => RomanNumber.Parse("")).Message);
             //ArgumentNullException без сообщения 
             Assert.ThrowsException<ArgumentNullException>(() => RomanNumber.Parse(null!));
         }
@@ -153,9 +153,9 @@ namespace TestProject
         [TestMethod]
         public void RomanNumberToStringParseCrosTest()
         {
-           
 
-            for(int n = 0;  n<=2022; ++n)
+
+            for (int n = 0; n <= 2022; ++n)
             {
                 RomanNumber num = new(n);
                 Assert.AreEqual(n, RomanNumber.Parse(num.ToString()));
@@ -180,6 +180,37 @@ namespace TestProject
             //Assert.AreNotEqual(rn4, rn1);
             //Assert.IsFalse(rn4 == rn1);
 
+        }
+
+        [TestMethod]
+        public void RomanNumberNegativeDigitCrosTest()
+        {
+            //Parse test
+            Assert.AreEqual(-400, RomanNumber.Parse("-CD"), "-CD == -400");
+
+            Assert.AreEqual(-4, RomanNumber.Parse("-IV"), "-IV == -4");
+
+            Assert.AreEqual(-10, RomanNumber.Parse("-X"), "-X == -10");
+
+            Assert.AreEqual(-30, RomanNumber.Parse("-XXX"), "-XXX == -30");
+
+            Assert.AreEqual(-1999, RomanNumber.Parse("-MCMXCIX"), "-MCMXCIX == -1999");
+
+            //ToString test
+            RomanNumber romanNumber = new(-10);
+            Assert.AreEqual("-X", romanNumber.ToString());
+
+            romanNumber = new(-1);
+            Assert.AreEqual("-I", romanNumber.ToString());
+
+            romanNumber = new(-90);
+            Assert.AreEqual("-XC", romanNumber.ToString());
+
+            romanNumber = new(-55);
+            Assert.AreEqual("-LV", romanNumber.ToString());
+
+            romanNumber = new(-120);
+            Assert.AreEqual("-CXX", romanNumber.ToString());
         }
     }
 
