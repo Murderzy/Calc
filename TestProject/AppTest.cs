@@ -109,5 +109,80 @@ namespace TestProject
             Assert.AreEqual(0, RomanNumber.Parse("N"));// Daniel Test 
         }
 
+        [TestMethod]
+        public void RomanNumberCtor()
+        {
+            RomanNumber romanNumber = new RomanNumber();
+            Assert.IsNotNull(romanNumber);
+
+            romanNumber = new(10);
+            Assert.IsNotNull(romanNumber);
+
+            romanNumber = new(0);
+            Assert.IsNotNull(romanNumber);
         }
+
+        [TestMethod]
+        public void RomanNumberToString()
+        {
+            RomanNumber romanNumber = new();
+            Assert.AreEqual("N", romanNumber.ToString());
+
+
+
+            romanNumber = new(10);
+            Assert.AreEqual("X", romanNumber.ToString());
+
+
+
+            romanNumber = new(90);
+            Assert.AreEqual("XC", romanNumber.ToString());
+
+
+
+            romanNumber = new(20);
+            Assert.AreEqual("XX", romanNumber.ToString());
+
+
+
+            romanNumber = new(1999);
+            Assert.AreEqual("MCMXCIX", romanNumber.ToString());
+        }
+
+        //0-2022
+        [TestMethod]
+        public void RomanNumberToStringParseCrosTest()
+        {
+           
+
+            for(int n = 0;  n<=2022; ++n)
+            {
+                RomanNumber num = new(n);
+                Assert.AreEqual(n, RomanNumber.Parse(num.ToString()));
+            }
+        }
+
+        [TestMethod]
+        public void RomanNumberTypeTest()
+        {
+            RomanNumber rn1 = new() { Value = 10};
+            RomanNumber rn2 = rn1;
+            Assert.AreSame(rn1, rn2);//rn1 && rn2 ссылки на один объект 
+            RomanNumber rn3 = rn1 with { };//клонирование
+
+            Assert.AreNotSame(rn3, rn1);
+            Assert.AreEqual(rn3, rn1);
+            Assert.IsTrue(rn3== rn1);
+
+            RomanNumber rn4 = rn1 with { Value = 20};
+
+            Assert.AreNotSame(rn4, rn1);
+            Assert.AreNotEqual(rn4, rn1);
+            Assert.IsFalse(rn4 == rn1);
+
+        }
+    }
+
 }
+
+
