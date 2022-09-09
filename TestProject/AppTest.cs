@@ -223,6 +223,17 @@ namespace TestProject
         }
     }
 
+    [TestClass]
+    public class OperationsTest
+    {
+        [TestMethod]
+        public void RomanNumberAddTest()
+        {
+        }
+        }
+
+
+
 }
 
 

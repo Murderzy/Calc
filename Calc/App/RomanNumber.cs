@@ -35,8 +35,8 @@ namespace Calc.App
                 return "N";
             }
 
-            int n = this._value;
-            String res = "";
+            int n = this._value<0? -this._value:this._value;
+            String res = this._value<0? "-":"";
             String[] parts = {"M", "CM", "D","CD","C","XC","L","XL","X","IX","V","IV","I"};
             int[] values = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
 
@@ -55,63 +55,7 @@ namespace Calc.App
 
         public static int Parse(String str)
         {
-            //char[] digits = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
-
-            //int[] digitValues = { 1, 5, 10, 50, 100, 500, 1000 };
-
-            ////int len = str.Length - 1;
-
-            //int pos = str.Length - 1;//положение последней цифры
-            //char digit = str[pos]; //символ цифры
-            //int ind = Array.IndexOf(digits, digit);
-            //if (ind == -1)
-            //{
-            //    throw new ArgumentException($"Invalid char {digit}");
-            //}
-            //int val = digitValues[ind];
-            //int number1 = val;
-            //int res = val;
-
-            //pos -= 1;
-
-            //while (pos >= 0)
-            //{
-            //    char digitS = str[pos]; //символ цифры
-            //    int indS = Array.IndexOf(digits, digitS);
-            //    if (indS == -1)
-            //    {
-            //        throw new ArgumentException($"Invalid char {digitS}");
-            //    }
-            //    int valS = digitValues[indS];
-            //    int number2 = valS;
-
-            //    if (val > valS )//проверки на добавление и вычитание
-            //    {
-            //        val -= valS;
-            //        //res = val;
-
-
-            //    }
-            //    else if (valS == number1)
-            //    {
-            //        val += valS;
-            //    }
-            //    else
-            //    {
-            //        val += valS;
-
-
-            //        //val *= -1;
-            //    }
-
-            //    pos--;
-            //    //number1 = number2;
-            //}
-
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //Console.WriteLine("res");
-            //return val;
+           
 
             char[] digits = { 'N','I', 'V', 'X', 'L', 'C', 'D', 'M' };
 
@@ -136,15 +80,25 @@ namespace Calc.App
 
             int res = 0;
             int temp = 0;
-            for (int i = 0; i < str.Length; i++)
+            int flag = 0;
+
+            if(str.StartsWith("-"))
+            {
+                flag = 1;
+            }
+
+            for (int i = flag; i < str.Length; i++)
             {
                 
                 char digit = str[pos]; //символ цифры
                 int ind = Array.IndexOf(digits, digit);
-                if (ind == -1)
-                {
-                    throw new ArgumentException($"Invalid char {digit}");
-                }
+                
+                
+               
+                    if (ind == -1)
+                    {
+                        throw new ArgumentException($"Invalid char {digit}");
+                    }
                 
                 int val = digitValues[ind];
                 int number1 = val;
@@ -170,6 +124,10 @@ namespace Calc.App
                 pos -= 1;
             }
 
+            if(str.StartsWith('-'))
+            {
+                res *= -1;
+            }
             return res;
 
         }
