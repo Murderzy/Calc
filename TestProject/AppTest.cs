@@ -227,14 +227,24 @@ namespace TestProject
     public class OperationsTest
     {
         [TestMethod]
-        public void RomanNumberAddTest()
+        public void RomanNumberAddRNTest()
         {
             RomanNumber rn1 = new() { Value = 5 };
             RomanNumber rn2 = new() { Value = 5 };
 
             Assert.AreEqual(10, (rn1.Add(rn2)).Value);
         }
+
+        [TestMethod]
+        public void RomanNumberAddTest()
+        {
+            var rn1 = new RomanNumber(10);
+            Assert.AreEqual(20,rn1.Add(10).Value);
+            Assert.AreEqual(30, rn1.Add("XX").Value);
+            Assert.AreEqual("V", rn1.Add(-5).ToString());
+            Assert.AreEqual("-XL", rn1.Add("-L").ToString());
         }
+    }
 
 
 

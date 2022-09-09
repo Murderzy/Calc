@@ -144,5 +144,29 @@ namespace Calc.App
             return r;
         }
 
+        public RomanNumber Add(int rn)
+        {
+            //if (rn is null)
+            //{
+            //    throw new ArgumentNullException();
+            //}
+
+            RomanNumber r = new();
+            r.Value = rn + this.Value;
+            return r;
         }
+
+        public RomanNumber Add(String rn)
+        {
+            //if (rn is null)
+            //{
+            //    throw new ArgumentNullException();
+            //}
+
+            RomanNumber r = new();
+            r.Value = RomanNumber.Parse(rn) + this.Value;
+            return r;
+        }
+
+    }
 }
