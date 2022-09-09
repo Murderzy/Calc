@@ -132,5 +132,17 @@ namespace Calc.App
 
         }
 
+        public RomanNumber Add(RomanNumber rn)
+        {
+            if (rn is null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            RomanNumber r = new();
+            r.Value = rn.Value+ this.Value;
+            return r;
+        }
+
         }
 }

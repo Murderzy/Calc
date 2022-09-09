@@ -229,6 +229,10 @@ namespace TestProject
         [TestMethod]
         public void RomanNumberAddTest()
         {
+            RomanNumber rn1 = new() { Value = 5 };
+            RomanNumber rn2 = new() { Value = 5 };
+
+            Assert.AreEqual(10, (rn1.Add(rn2)).Value);
         }
         }
 
