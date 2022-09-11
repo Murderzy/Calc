@@ -132,6 +132,66 @@ namespace Calc.App
 
         }
 
+        public static RomanNumber Add(int rn1, int rn2)
+        {
+            //if (rn is null)
+            //{
+            //    throw new ArgumentNullException();
+            //}
+
+            RomanNumber rn = new();
+            rn.Value = rn1 + rn2;
+            return rn;
+        }
+
+        public static RomanNumber Add(RomanNumber rn1, RomanNumber rn2)
+        {
+            //if (rn is null)
+            //{
+            //    throw new ArgumentNullException();
+            //}
+
+            RomanNumber rn = new();
+            rn.Value = rn1.Value + rn2.Value;
+            return rn;
+        }
+
+        public static RomanNumber Add(RomanNumber rn1, int rn2)
+        {
+            //if (rn is null)
+            //{
+            //    throw new ArgumentNullException();
+            //}
+
+            RomanNumber rn = new();
+            rn.Value = rn1.Value + rn2;
+            return rn;
+        }
+
+        public static RomanNumber Add(RomanNumber rn1, String rn2)
+        {
+            //if (rn is null)
+            //{
+            //    throw new ArgumentNullException();
+            //}
+
+            RomanNumber rn = new();
+            rn.Value = rn1.Value + RomanNumber.Parse(rn2);
+            return rn;
+        }
+
+        public static RomanNumber Add(String rn1, String rn2)
+        {
+            //if (rn is null)
+            //{
+            //    throw new ArgumentNullException();
+            //}
+
+            RomanNumber rn = new();
+            rn.Value = RomanNumber.Parse(rn1) + RomanNumber.Parse(rn2);
+            return rn;
+        }
+
         public RomanNumber Add(RomanNumber rn)
         {
             if (rn is null)

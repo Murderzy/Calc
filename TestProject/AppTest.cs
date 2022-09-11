@@ -236,13 +236,36 @@ namespace TestProject
         }
 
         [TestMethod]
-        public void RomanNumberAddTest()
+        public void RomanNumberAddValueTest()
         {
             var rn1 = new RomanNumber(10);
             Assert.AreEqual(20,rn1.Add(10).Value);
-            Assert.AreEqual(30, rn1.Add("XX").Value);
+            
             Assert.AreEqual("V", rn1.Add(-5).ToString());
+           
+        }
+
+        public void RomanNumberAddStringTest()
+        {
+            var rn1 = new RomanNumber(10);
+           
+            Assert.AreEqual(30, rn1.Add("XX").Value);
+           
             Assert.AreEqual("-XL", rn1.Add("-L").ToString());
+        }
+
+        [TestMethod]
+        public void AddStaticTest()
+        {
+            RomanNumber rn5 = RomanNumber.Add(2, 3);
+            RomanNumber rn8 = RomanNumber.Add(rn5, 3);
+            RomanNumber rn10 = RomanNumber.Add("I", "IX");
+            RomanNumber rn9 = RomanNumber.Add(rn5, "IV");
+            RomanNumber rn13 = RomanNumber.Add(rn5, rn8);
+            // Задание: составить утверждения для тестирования RomanNumber.Add
+            // Реализовать RomanNumber.Add и необходимые перегрузки
+            // Расширить тесты с учетом исключительных ситуаций
+            // ! В стиле ХР не делаем лишнего
         }
     }
 
