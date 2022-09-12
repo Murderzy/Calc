@@ -220,6 +220,12 @@ namespace TestProject
 
             romanNumber = new(-120);
             Assert.AreEqual("-CXX", romanNumber.ToString());
+
+
+            //error
+            Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("1CMXCIX-"); });
+            Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("--1CMXCIX"); });
+            Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("--1CMXCIX-"); });
         }
     }
 
