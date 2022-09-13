@@ -235,10 +235,32 @@ namespace TestProject
         [TestMethod]
         public void RomanNumberAddRNTest()
         {
-            RomanNumber rn1 = new() { Value = 5 };
-            RomanNumber rn2 = new() { Value = 5 };
+            RomanNumber rn2 = new(2);
+            RomanNumber rn5 = new(5);
+            RomanNumber rn7 = new(7);
+            RomanNumber rn10 = new() { Value = 10 };
+            RomanNumber rn_5 = new() { Value = -5 };
+            RomanNumber rn_7 = new() { Value = -7 };
 
-            Assert.AreEqual(10, (rn1.Add(rn2)).Value);
+            Assert.AreEqual(9, rn2.Add(rn7).Value);
+            Assert.AreEqual(20, rn10.Add(rn10).Value);
+            Assert.AreEqual(5, rn10.Add(rn_5).Value);
+            Assert.AreEqual(3, rn10.Add(rn_7).Value);
+            Assert.AreEqual(10, rn5.Add(rn5).Value);
+            Assert.AreEqual(7, rn7.Add(new RomanNumber(0)).Value);
+            Assert.AreEqual(5, rn5.Add(new RomanNumber()).Value);
+            Assert.AreEqual(25, rn5.Add(new RomanNumber(20)).Value);
+            Assert.AreEqual(6, rn5.Add(new RomanNumber(1)).Value);
+            Assert.AreEqual(19, rn10.Add(new RomanNumber(9)).Value);
+            Assert.AreEqual(-5, rn5.Add(new RomanNumber(-10)).Value);
+            //Assert.AreEqual(rn7, rn2.Add(rn5));
+            //Assert.AreEqual(rn_5, rn_7.Add(rn2));
+            Assert.AreEqual("XVII", rn7.Add(rn10).ToString());
+            Assert.AreEqual("III", rn_7.Add(rn10).ToString());
+            //Assert.AreEqual("-V", rn_7.Add(rn2).ToString());
+            Assert.AreEqual("-XII", rn_7.Add(rn_5).ToString());
+
+            Assert.ThrowsException<ArgumentNullException>(() => rn2.Add((RomanNumber)null!));
         }
 
         [TestMethod]
@@ -247,19 +269,21 @@ namespace TestProject
             var rn = new RomanNumber(10);
             Assert.AreEqual(20, rn.Add(10).Value);
             Assert.AreEqual("V", rn.Add(-5).ToString());
-            Assert.AreEqual(rn, rn.Add(0));
-            
-            Assert.AreEqual("V", rn1.Add(-5).ToString());
-           
+            //Assert.AreEqual(rn, rn.Add(0));
+
         }
 
         public void RomanNumberAddStringTest()
         {
-            var rn1 = new RomanNumber(10);
-           
-            Assert.AreEqual(30, rn1.Add("XX").Value);
-           
-            Assert.AreEqual("-XL", rn1.Add("-L").ToString());
+            var rn = new RomanNumber(10);
+            Assert.AreEqual(30, rn.Add("XX").Value);
+            Assert.AreEqual("-XL", rn.Add("-L").ToString());
+            Assert.AreEqual(rn, rn.Add("N"));
+
+            Assert.ThrowsException<ArgumentException>(() => rn.Add(""));
+            Assert.ThrowsException<ArgumentException>(() => rn.Add("-"));
+            Assert.ThrowsException<ArgumentException>(() => rn.Add("10"));
+            Assert.ThrowsException<ArgumentNullException>(() => rn.Add((String)null!));
         }
 
         [TestMethod]
@@ -274,6 +298,38 @@ namespace TestProject
             // Реализовать RomanNumber.Add и необходимые перегрузки
             // Расширить тесты с учетом исключительных ситуаций
             // ! В стиле ХР не делаем лишнего
+
+            Assert.AreEqual(5, rn5.Value);
+            Assert.AreEqual(8, rn8.Value);
+            Assert.AreEqual(9, rn9.Value);
+            Assert.AreEqual(10, rn10.Value);
+            Assert.AreEqual(13, rn13.Value);
+        }
+
+        public void AddStaticObjectTest()
+        {
+            object number1 = 2;
+            object number2 = 3;
+
+            object str1 = "IX";
+            object str2 = "I";
+            object str3 = "IV";
+
+            RomanNumber rn5 = RomanNumber.Add(number1, number2);
+            RomanNumber rn8 = RomanNumber.Add(rn5, number2);
+            RomanNumber rn10 = RomanNumber.Add(str2, str1);
+            RomanNumber rn9 = RomanNumber.Add(rn5, str3);
+            RomanNumber rn13 = RomanNumber.Add(rn5, rn8);
+            // Задание: составить утверждения для тестирования RomanNumber.Add
+            // Реализовать RomanNumber.Add и необходимые перегрузки
+            // Расширить тесты с учетом исключительных ситуаций
+            // ! В стиле ХР не делаем лишнего
+
+            Assert.AreEqual(5, rn5.Value);
+            Assert.AreEqual(8, rn8.Value);
+            Assert.AreEqual(9, rn9.Value);
+            Assert.AreEqual(10, rn10.Value);
+            Assert.AreEqual(13, rn13.Value);
         }
     }
 
