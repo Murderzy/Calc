@@ -306,6 +306,7 @@ namespace TestProject
             Assert.AreEqual(13, rn13.Value);
         }
 
+        [TestMethod]
         public void AddStaticObjectTest()
         {
             object number1 = 2;
