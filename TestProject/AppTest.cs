@@ -309,6 +309,7 @@ namespace TestProject
         [TestMethod]
         public void AddStaticObjectTest()
         {
+            //тесты для фабричного метода с object параметрами
             object number1 = 2;
             object number2 = 3;
 
