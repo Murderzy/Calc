@@ -132,66 +132,105 @@ namespace Calc.App
 
         }
 
-        public static RomanNumber Add(int rn1, int rn2)
-        {
-            //if (rn is null)
-            //{
-            //    throw new ArgumentNullException();
-            //}
+        //public static RomanNumber Add(int rn1, int rn2)
+        //{
+        //    //if (rn is null)
+        //    //{
+        //    //    throw new ArgumentNullException();
+        //    //}
 
-            RomanNumber rn = new();
-            rn.Value = rn1 + rn2;
-            return rn;
-        }
+        //    RomanNumber rn = new();
+        //    rn.Value = rn1 + rn2;
+        //    return rn;
+        //}
 
-        public static RomanNumber Add(RomanNumber rn1, RomanNumber rn2)
-        {
-            //if (rn is null)
-            //{
-            //    throw new ArgumentNullException();
-            //}
+        //public static RomanNumber Add(RomanNumber rn1, RomanNumber rn2)
+        //{
+        //    //if (rn is null)
+        //    //{
+        //    //    throw new ArgumentNullException();
+        //    //}
 
-            RomanNumber rn = new();
-            rn.Value = rn1.Value + rn2.Value;
-            return rn;
-        }
+        //    RomanNumber rn = new();
+        //    rn.Value = rn1.Value + rn2.Value;
+        //    return rn;
+        //}
 
-        public static RomanNumber Add(RomanNumber rn1, int rn2)
-        {
-            //if (rn is null)
-            //{
-            //    throw new ArgumentNullException();
-            //}
+        //public static RomanNumber Add(RomanNumber rn1, int rn2)
+        //{
+        //    //if (rn is null)
+        //    //{
+        //    //    throw new ArgumentNullException();
+        //    //}
 
-            RomanNumber rn = new();
-            rn.Value = rn1.Value + rn2;
-            return rn;
-        }
+        //    RomanNumber rn = new();
+        //    rn.Value = rn1.Value + rn2;
+        //    return rn;
+        //}
 
-        public static RomanNumber Add(RomanNumber rn1, String rn2)
-        {
-            //if (rn is null)
-            //{
-            //    throw new ArgumentNullException();
-            //}
+        //public static RomanNumber Add(RomanNumber rn1, String rn2)
+        //{
+        //    //if (rn is null)
+        //    //{
+        //    //    throw new ArgumentNullException();
+        //    //}
 
-            RomanNumber rn = new();
-            rn.Value = rn1.Value + RomanNumber.Parse(rn2);
-            return rn;
-        }
+        //    RomanNumber rn = new();
+        //    rn.Value = rn1.Value + RomanNumber.Parse(rn2);
+        //    return rn;
+        //}
 
-        public static RomanNumber Add(String rn1, String rn2)
-        {
-            //if (rn is null)
-            //{
-            //    throw new ArgumentNullException();
-            //}
+        //public static RomanNumber Add(String rn1, String rn2)
+        //{
+        //    //if (rn is null)
+        //    //{
+        //    //    throw new ArgumentNullException();
+        //    //}
 
-            RomanNumber rn = new();
-            rn.Value = RomanNumber.Parse(rn1) + RomanNumber.Parse(rn2);
-            return rn;
-        }
+        //    RomanNumber rn = new();
+        //    rn.Value = RomanNumber.Parse(rn1) + RomanNumber.Parse(rn2);
+        //    return rn;
+        //}
 
+        //before refactoring
+
+        //public RomanNumber Add(RomanNumber rn)
+        //{
+        //    if (rn is null)
+        //    {
+        //        throw new ArgumentNullException();
+        //    }
+
+        //    RomanNumber r = new();
+        //    r.Value = rn.Value+ this.Value;
+        //    return r;
+        //}
+
+        //public RomanNumber Add(int rn)
+        //{
+        //    //if (rn is null)
+        //    //{
+        //    //    throw new ArgumentNullException();
+        //    //}
+
+        //    RomanNumber r = new();
+        //    r.Value = rn + this.Value;
+        //    return r;
+        //}
+
+        //public RomanNumber Add(String rn)
+        //{
+        //    //if (rn is null)
+        //    //{
+        //    //    throw new ArgumentNullException();
+        //    //}
+
+        //    RomanNumber r = new();
+        //    r.Value = RomanNumber.Parse(rn) + this.Value;
+        //    return r;
+        //}
+
+        //after refactoring
         public RomanNumber Add(RomanNumber rn)
         {
             if (rn is null)
@@ -200,32 +239,64 @@ namespace Calc.App
             }
 
             RomanNumber r = new();
-            r.Value = rn.Value+ this.Value;
+            r.Value = rn.Value + this.Value;
             return r;
         }
 
         public RomanNumber Add(int rn)
         {
-            //if (rn is null)
-            //{
-            //    throw new ArgumentNullException();
-            //}
-
-            RomanNumber r = new();
-            r.Value = rn + this.Value;
-            return r;
+            //вместо дублирования -- делегируем
+            
+            return this.Add(new RomanNumber(rn));
         }
 
         public RomanNumber Add(String rn)
         {
-            //if (rn is null)
-            //{
-            //    throw new ArgumentNullException();
-            //}
+            return this.Add(new RomanNumber(Parse(rn)));
+        }
 
-            RomanNumber r = new();
-            r.Value = RomanNumber.Parse(rn) + this.Value;
-            return r;
+        //public static RomanNumber Add(object rn1, object rn2)
+        //{
+        //    if (rn1 is null || rn2 is null)
+        //    {
+        //        throw new ArgumentNullException();
+        //    }
+
+        //    if (rn1 is int && rn2 is int) return new RomanNumber((int)rn1).Add((int)rn2);
+        //    else if (rn1 is String && rn2 is String) return new RomanNumber(RomanNumber.Parse((String)rn1)).Add((String)rn2);
+        //    else if (rn1 is int && rn2 is String) return new RomanNumber((int)rn1).Add((String)rn2);
+        //    else if (rn1 is String && rn2 is int) return new RomanNumber((int)rn2).Add((String)rn1);
+
+        //    return new RomanNumber();
+        //}
+
+
+        public static RomanNumber Add(int rn1, int rn2)
+        {
+            RomanNumber rn = new();
+            rn.Value = rn1 + rn2;
+            return rn;
+        }
+
+        public static RomanNumber Add(RomanNumber rn1, RomanNumber rn2)
+        {
+            return rn1.Add(rn2);
+        }
+
+        public static RomanNumber Add(RomanNumber rn1, int rn2)
+        {
+            return rn1.Add(rn2);
+        }
+
+        public static RomanNumber Add(RomanNumber rn1, String rn2)
+        {
+            return rn1.Add(rn2);
+        }
+
+        public static RomanNumber Add(String rn1, String rn2)
+        {
+
+            return RomanNumber.Add(RomanNumber.Parse(rn1), RomanNumber.Parse(rn2));
         }
 
     }

@@ -164,3 +164,139 @@ Mercurial -- Bitbucket
 		::разделение на несколько методов
 		::соединение в один метод
 		
+
+-------------------------
+Рефакторинг.Практика
+
+1.Методы Add
+	Ситуация: несколько методов Add(перегрузки) явно реализуют алгоритм сложения чисел(делегируют оператору +)
+	Проблема: если понадобится изменить алгоритм сложения, то прийдется менять код во всех методах(дублировать изминения)
+	Решение: реализовать алгоритм в одном методе, остальные перегрузки вызывают этот метод
+	Add{x+y}Add{a+b}--->Add{x+y},Add(a,b){Add(x,y)}
+
+2. Фабричность vs Полиморфизм
+	Фабричность - создание объекта по разнообразным характеристикам
+	MakeObject(object data)/ MakeObject(String name)
+	Перегрузки - наличие множества методов под каждую из характеристик
+	MakeObject(String name) / MakeObject(int name) / MakeObject(float name)
+
+	Фабричность более эластчна(позволяет легко расширить множество поддерживаемых типов) - контроль правильности runtime
+	Повышенная роль документации и её актуальность. Алгоритм централизован, изменения в одном месте.
+
+	Перегрузки контролируют на этапе компиляции, ошибки видно сразу, уменьшается роль документации. 
+	Добавление новых типов требует описание новых методов. Если организация не качествена, то алгоритмы распределенны и измененич прийдется повторять
+	во всех методах
+
+
+Рефакоринг - если код присутсвует во всех блоках - его нужно вынести
+Рефакторинг - соединение(перераспределение) условий
+
+
+/// <summary>
+        /// Calculate sum of rn1 and rn2
+        /// Where rn's  types are: int, String, RomanNumber
+        /// </summary>
+        /// <param name="rn1">int, String, RomanNumber</param>
+        /// <param name="rn2">int, String, RomanNumber</param>
+        /// <returns>RomanNumber</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static RomanNumber Add(object rn1, object rn2)
+        {
+            /*  Рефакторинг - разделение условий (условия внутри условия)
+            if (rn1 is null || rn2 is null)
+            {
+                throw new ArgumentNullException(
+                    rn1 is null ? nameof(rn1) : nameof(rn2)) ;
+            }*/
+            if (rn1 is null) throw new ArgumentNullException(nameof(rn1));
+            if (rn2 is null) throw new ArgumentNullException(nameof(rn2));
+
+
+
+           /* Рефакторинг - соединение (перераспределение) условий
+            if (rn1 is int && rn2 is int) return new RomanNumber((int)rn1).Add((int)rn2);
+            else if (rn1 is String && rn2 is String) return new RomanNumber(RomanNumber.Parse((String)rn1)).Add((String)rn2);
+            else if (rn1 is int && rn2 is String) return new RomanNumber((int)rn1).Add((String)rn2);
+            else if (rn1 is String && rn2 is int) return new RomanNumber((int)rn2).Add((String)rn1);
+            
+             (rn1 is int && rn2 is int) + (rn1 is int && rn2 is String) -->
+            (rn1 is int)(  rn2 is int  + rn2 is String )
+             */
+            if(rn1 is int v1)
+            {
+                /* Рефакторинг - если код присутствует во всех блоках, его нужно вынести
+                if(rn2 is int v2) return new RomanNumber(v1).Add(v2);
+                if(rn2 is String s2) return new RomanNumber(v1).Add(s2);
+                */
+                var rn = new RomanNumber(v1);
+                if (rn2 is int v2) return rn.Add(v2);
+                if (rn2 is String s2) return rn.Add(s2);
+            }
+
+
+
+
+            return new RomanNumber();
+        }
+
+
+
+
+
+		-------------
+
+		public static RomanNumber Add(object obj1, object obj2)
+        {
+            if (obj1 is null) throw new ArgumentNullException(nameof(obj1));
+            if (obj2 is null) throw new ArgumentNullException(nameof(obj2));
+            RomanNumber rn1, rn2;
+            if (obj1 is int val1) rn1 = new RomanNumber(val1);
+            else if (obj1 is String str1) rn1 = new RomanNumber(Parse(str1));
+            else if (obj1 is RomanNumber rn) rn1 = rn;
+            else throw new ArgumentException("obj1: type unsupported");
+
+
+
+           if (obj2 is int val2) rn2 = new RomanNumber(val2);
+            else if (obj2 is String str2) rn2 = new RomanNumber(Parse(str2));
+            else if (obj2 is RomanNumber rn) rn2 = rn;
+            else throw new ArgumentException("obj2: type unsupported");
+
+
+
+           return rn1.Add(rn2);
+        }
+		----------------
+
+		public static RomanNumber Add(object obj1, object obj2)
+        {
+            var rns = new RomanNumber[] { null!, null! };
+            var pars = new object[] { obj1, obj2 };
+
+
+
+           for (int i = 0; i < 2; i++)
+            {
+                if (pars[i] is null) throw new ArgumentNullException($"obj{i+1}");
+
+
+
+               if (pars[i] is int val) rns[i] = new RomanNumber(val);
+                else if (pars[i] is String str) rns[i] = new RomanNumber(Parse(str));
+                else if (pars[i] is RomanNumber rn) rns[i] = rn;
+                else throw new ArgumentException($"obj{i+1}: type unsupported");
+            }            
+
+
+
+           return rns[0].Add(rns[1]);
+
+		   ///
+			   for(int i = 0 ; i < 2; i++)
+			   {
+					return rns[i].Add(rns[i-1]);
+			   }
+			////
+        }
+
+		------------------
