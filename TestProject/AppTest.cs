@@ -244,8 +244,10 @@ namespace TestProject
         [TestMethod]
         public void RomanNumberAddValueTest()
         {
-            var rn1 = new RomanNumber(10);
-            Assert.AreEqual(20,rn1.Add(10).Value);
+            var rn = new RomanNumber(10);
+            Assert.AreEqual(20, rn.Add(10).Value);
+            Assert.AreEqual("V", rn.Add(-5).ToString());
+            Assert.AreEqual(rn, rn.Add(0));
             
             Assert.AreEqual("V", rn1.Add(-5).ToString());
            
