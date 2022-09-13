@@ -320,10 +320,7 @@ namespace TestProject
             RomanNumber rn10 = RomanNumber.Add(str2, str1);
             RomanNumber rn9 = RomanNumber.Add(rn5, str3);
             RomanNumber rn13 = RomanNumber.Add(rn5, rn8);
-            // Задание: составить утверждения для тестирования RomanNumber.Add
-            // Реализовать RomanNumber.Add и необходимые перегрузки
-            // Расширить тесты с учетом исключительных ситуаций
-            // ! В стиле ХР не делаем лишнего
+           
 
             Assert.AreEqual(5, rn5.Value);
             Assert.AreEqual(8, rn8.Value);
