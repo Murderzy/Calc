@@ -284,17 +284,17 @@ namespace Calc.App
 
         public static RomanNumber Add(RomanNumber rn1, RomanNumber rn2)
         {
-            return rn1.Add(rn2);
+            return RomanNumber.Add(rn1.Value,rn2.Value);
         }
 
         public static RomanNumber Add(RomanNumber rn1, int rn2)
         {
-            return rn1.Add(rn2);
+            return RomanNumber.Add(rn1.Value, rn2);
         }
 
         public static RomanNumber Add(RomanNumber rn1, String rn2)
         {
-            return rn1.Add(rn2);
+            return RomanNumber.Add(rn1.Value, RomanNumber.Parse(rn2));
         }
 
         public static RomanNumber Add(String rn1, String rn2)
@@ -304,7 +304,7 @@ namespace Calc.App
         }
 
 
-        //  object method
+        //  object method add
 
         public static RomanNumber Add(object obj1, object obj2)
         {
