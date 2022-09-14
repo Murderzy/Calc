@@ -8,6 +8,10 @@ namespace Calc.App
 {
     public class RomanNumber
     {
+        const String empty_string = "Empty string not allowed";
+        const String invalid_char = "Invalid char %";
+        const String unsupported_type = $"obj D : type unsupported";
+
         private int _value;
 
         public int Value
@@ -69,7 +73,7 @@ namespace Calc.App
             }
             if (str.Length == 0)
             {
-                throw new ArgumentException("Empty string not allowed");
+                throw new ArgumentException(empty_string);
             }
 
             int len = str.Length;
@@ -97,7 +101,7 @@ namespace Calc.App
                
                     if (ind == -1)
                     {
-                        throw new ArgumentException($"Invalid char {digit}");
+                        throw new ArgumentException(invalid_char.Replace('%',digit));
                     }
                 
                 int val = digitValues[ind];
@@ -318,7 +322,7 @@ namespace Calc.App
                 if (pars[i] is int val) rns[i] = new RomanNumber(val);
                 else if (pars[i] is String str) rns[i] = new RomanNumber(Parse(str));
                 else if (pars[i] is RomanNumber rn) rns[i] = rn;
-                else throw new ArgumentException($"obj{i + 1}: type unsupported");
+                else throw new ArgumentException(unsupported_type.Replace("D",(i + 1).ToString()));
             }
 
 
