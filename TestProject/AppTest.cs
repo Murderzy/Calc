@@ -333,7 +333,36 @@ namespace TestProject
         }
     }
 
+    [TestClass]
+    public class UserInterfaceTest
+    {
 
+        [TestMethod]
+        public void UIOperationsTest()
+        {
+            //тесты для фабричного метода с object параметрами
+            object number1 = 2;
+            object number2 = 3;
+
+            object str1 = "IX";
+            object str2 = "I";
+            object str3 = "IV";
+
+            RomanNumber rn5 = RomanNumber.Add(number1, number2);
+            RomanNumber rn8 = RomanNumber.Add(rn5, number2);
+            RomanNumber rn10 = RomanNumber.Add(str2, str1);
+            RomanNumber rn9 = RomanNumber.Add(rn5, str3);
+            RomanNumber rn13 = RomanNumber.Add(rn5, rn8);
+
+
+            Assert.AreEqual(5, rn5.Value);
+            Assert.AreEqual(8, rn8.Value);
+            Assert.AreEqual(9, rn9.Value);
+            Assert.AreEqual(10, rn10.Value);
+            Assert.AreEqual(13, rn13.Value);
+        }
+
+    }
 
 }
 

@@ -6,36 +6,50 @@ using System.Threading.Tasks;
 
 namespace Calc.App
 {
-    public class Resources
+    public static class Resources
     {
-        //const String empty_string = "Empty string not allowed";
-        //const String invalid_char = "Invalid char %";
-        //const String unsupported_type = $"obj D : type unsupported";
-
-        public static String Culture { get; set; } = "uk-UA";
+        public static String Culture { get; set; } = "en-US";
 
         public static String GetEmptyStringMessage(String? culture = null)
         {
             if (culture == null) culture = Culture;
-
-            switch(culture)
+            switch (culture)
             {
-                case "uk-UA": return "Пустая сторка неприпустима";break;
-                case "en-US": return "Empty string not allowed";break;
-                
+                case "uk-UA": return "Порожній рядок неприпустимий";
+                case "en-US": return "Empty string not allowed";
             }
-            throw new Exception("Unsopported culture");
-            
+            throw new Exception("Unsupported culture");
         }
 
-        public static String GetInvalidCharMessage(char c)
+        public static String GetInvalidCharMessage(char c, String? culture = null)
         {
-            return $"Invalid char {c}";
+            culture ??= Culture;
+            switch(culture) 
+            {
+                case  "uk-UA" : return $"Недозволений символ {c}";
+                case "en-US": return $"Invalid char {c}";
+            }
+            throw new Exception("Unsupported culture");
         }
-
-        public static String GetInvalidTypeMessage(int d, String type)
+        public static String GetInvalidTypeMessage(int objNumber, String type, String? culture = null)
         {
-            return $"obj {d} : type '{type}' unsupported";
+            culture = culture ?? Culture;
+            switch  (culture) 
+            {
+                case "uk-UA": return $"obj{objNumber}: тип '{type}' не підтримується";
+                case "en-US": return $"obj{objNumber}: type '{type}' unsupported";
+            }
+            throw new Exception("Unsupported culture");
+        }
+        public static String GetMispalcedNMessage(String? culture = null)
+        {
+            if (culture == null) culture = Culture;
+            switch (culture)
+            {
+                case "uk-UA": return "'N' не дозволяється у даному контексті";
+                case "en-US": return "'N' is not allowed in this context";
+            }
+            throw new Exception("Unsupported culture");
         }
     }
 }
