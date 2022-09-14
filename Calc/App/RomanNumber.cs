@@ -61,9 +61,9 @@ namespace Calc.App
         {
            
 
-            char[] digits = { 'N','I', 'V', 'X', 'L', 'C', 'D', 'M' };
+            char[] digits = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
 
-            int[] digitValues = { 0,1, 5, 10, 50, 100, 500, 1000 };
+            int[] digitValues = { 1, 5, 10, 50, 100, 500, 1000 };
 
             if (str == "N") {return 0;}
 

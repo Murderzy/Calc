@@ -116,6 +116,7 @@ namespace TestProject
         public void RomanNumberNdigit()
         {
             Assert.AreEqual(0, RomanNumber.Parse("N"));// Daniel Test 
+            Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("XN"); });
         }
 
         [TestMethod]
