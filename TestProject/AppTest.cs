@@ -79,10 +79,10 @@ namespace TestProject
             var exc3 = Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("MCMXCIф"); });
             var exc4 = Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("1"); });
 
-            var exp1 = new ArgumentException("Invalid char 1");
-            var exp2 = new ArgumentException("Invalid char H");
-            var exp3 = new ArgumentException("Invalid char ф");
-            var exp4 = new ArgumentException("Invalid char 1");
+            var exp1 = new ArgumentException(Calc.App.Resources.GetInvalidCharMessage('1'));
+            var exp2 = new ArgumentException(Calc.App.Resources.GetInvalidCharMessage('H'));
+            var exp3 = new ArgumentException(Calc.App.Resources.GetInvalidCharMessage('ф'));
+            var exp4 = new ArgumentException(Calc.App.Resources.GetInvalidCharMessage('1'));
 
             Assert.AreEqual(exp1.Message, exc1.Message);
             Assert.AreEqual(exp2.Message, exc2.Message);
@@ -90,7 +90,7 @@ namespace TestProject
             Assert.AreEqual(exp4.Message, exc4.Message);
 
             Assert.AreEqual(true,
-                Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("X X"); }).Message.StartsWith("Invalid char"));
+                Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("1X X1"); }).Message.StartsWith(Calc.App.Resources.GetInvalidCharMessage(' ').Substring(0,7)));
             //Assert.IsTrue( Assert.ThrowsException<ArgumentException>(() => { RomanNumber.Parse("X X"); }).Message.StartsWith("Invalid char"))
         }
 
@@ -101,7 +101,7 @@ namespace TestProject
             // Будемо вимагати, щоб ще призводило до виключення
             // ArgumentException з повідомленням "Empty string not allowed"
             Assert.AreEqual(
-                "Empty string not allowed",
+                Calc.App.Resources.GetEmptyStringMessage(),
                 Assert.ThrowsException<ArgumentException>(
                     () => RomanNumber.Parse("")
                 ).Message
