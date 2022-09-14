@@ -12,11 +12,20 @@ namespace Calc.App
         //const String invalid_char = "Invalid char %";
         //const String unsupported_type = $"obj D : type unsupported";
 
-        public String Culture { get; set; } = "uk-UA";
+        public static String Culture { get; set; } = "uk-UA";
 
         public static String GetEmptyStringMessage(String? culture = null)
         {
-            return "Empty string not allowed";
+            if (culture == null) culture = Culture;
+
+            switch(culture)
+            {
+                case "uk-UA": return "Пустая сторка неприпустима";break;
+                case "en-US": return "Empty string not allowed";break;
+                
+            }
+            throw new Exception("Unsopported culture");
+            
         }
 
         public static String GetInvalidCharMessage(char c)
