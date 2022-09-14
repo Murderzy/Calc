@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calc.App
 {
+    // класс отвечающий за работу калькулятора, его "движок"
     public static class CalcEnginee
     {
         private static int number1;
@@ -15,7 +16,7 @@ namespace Calc.App
 
         private static void GetOperation()
         {
-            operation = UserInterface.Operator();
+            operation = UserInterface.Operator();  // получаем оператор
         }
 
         private static void GetNumbers()
@@ -31,7 +32,7 @@ namespace Calc.App
             }
             else
             {
-                number1 = RomanNumber.Parse(val1);
+                number1 = RomanNumber.Parse(val1);  // строку парсим в число
             }
 
             if (Int32.TryParse(val2, out number2))  //  проверяем пользователь ввел число или строку, если true - число
@@ -40,7 +41,7 @@ namespace Calc.App
             }
             else
             {
-                number2 = RomanNumber.Parse(val2);
+                number2 = RomanNumber.Parse(val2);  // строку парсим в число
             }
         }
 
@@ -48,7 +49,7 @@ namespace Calc.App
         {
             switch(operation)
             {
-                case "+": Console.WriteLine((RomanNumber.Add(number1, number2)).ToString()); break;
+                case "+": Console.WriteLine((RomanNumber.Add(number1, number2)).ToString()); break;  //  выводим результат выбранной операции
 
             }
 
@@ -57,6 +58,8 @@ namespace Calc.App
 
         public static void Work()
         {
+            //  собираем все методы для работы калькулятора
+
             GetOperation();
             GetNumbers();
             GetRezult();

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Calc.App
 {
+    //  класс отвечающий за работу с пользовательским интерфейсом
+
     public static class UserInterface
     {
         public static String Culture { get; set; } = "en-US";
@@ -14,7 +16,7 @@ namespace Calc.App
         {
             String oper = "";
             String temp = "";
-            String[] array_operations = { "+", "-", "/", "*" };
+            String[] array_operations = { "+", "-", "/", "*" };  //  набор допустимых операторов
 
             if (culture == null) culture = Culture;
             
@@ -29,11 +31,11 @@ namespace Calc.App
 
             temp = Console.ReadLine();
 
-            int ind = Array.IndexOf(array_operations, temp);
+            int ind = Array.IndexOf(array_operations, temp);  //  проверяем ввел ли пользователь оператор, который мы можем обработать
 
             if(ind == -1)
             {
-                throw new ArgumentException("Unsupported operation");
+                throw new ArgumentException("Unsupported operation"); //  иначе исключение
             }
 
             oper = temp;
@@ -41,7 +43,7 @@ namespace Calc.App
             return oper;
         }
 
-        public static String Number(String? culture = null)
+        public static String Number(String? culture = null)  //  просто получаем число от пользователя
         {
             String number = null;
 

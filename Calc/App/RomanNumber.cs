@@ -21,7 +21,7 @@ namespace Calc.App
         }
         
 
-        //Получение числа из строки
+        //  Получение числа из строки
         public RomanNumber()
         {
             this._value = 0; 
@@ -78,7 +78,7 @@ namespace Calc.App
 
             int len = str.Length;
 
-            int pos = str.Length - 1;//положение последней цифры
+            int pos = str.Length - 1;  //  положение последней цифры
 
             
 
@@ -94,7 +94,7 @@ namespace Calc.App
             for (int i = flag; i < str.Length; i++)
             {
                 
-                char digit = str[pos]; //символ цифры
+                char digit = str[pos];  //  символ цифры
                 int ind = Array.IndexOf(digits, digit);
                 
                 
@@ -249,7 +249,7 @@ namespace Calc.App
 
         public RomanNumber Add(int rn)
         {
-            //вместо дублирования -- делегируем
+            //  вместо дублирования -- делегируем
             
             return this.Add(new RomanNumber(rn));
         }
@@ -304,7 +304,7 @@ namespace Calc.App
         }
 
 
-        //object method
+        //  object method
 
         public static RomanNumber Add(object obj1, object obj2)
         {
