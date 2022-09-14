@@ -24,9 +24,9 @@ namespace Calc.App
            String val1 = UserInterface.Number();
            String val2 = UserInterface.Number();
 
-            
 
-            if(Int32.TryParse(val1, out number1))  //  проверяем пользователь ввел число или строку, если true - число
+
+            if (Int32.TryParse(val1, out number1))  //  проверяем пользователь ввел число или строку, если true - число
             {
 
             }
@@ -50,6 +50,7 @@ namespace Calc.App
             switch(operation)
             {
                 case "+": Console.WriteLine((RomanNumber.Add(number1, number2)).ToString()); break;  //  выводим результат выбранной операции
+                case "*": Console.WriteLine((RomanNumber.Mult(number1, number2)).ToString()); break;  //  выводим результат выбранной операции
 
             }
 

@@ -331,5 +331,35 @@ namespace Calc.App
             
         }
 
+        //  умножение римских чисел
+
+        public static RomanNumber Mult(int rn1, int rn2)
+        {
+            RomanNumber rn = new();
+            rn.Value = rn1 * rn2;
+            return rn;
+        }
+
+        public static RomanNumber Mult(RomanNumber rn1, RomanNumber rn2)
+        {
+            return RomanNumber.Mult(rn1.Value, rn2.Value);
+        }
+
+        public static RomanNumber Mult(RomanNumber rn1, int rn2)
+        {
+            return RomanNumber.Mult(rn1.Value, rn2);
+        }
+
+        public static RomanNumber Mult(RomanNumber rn1, String rn2)
+        {
+            return RomanNumber.Mult(rn1.Value, RomanNumber.Parse(rn2));
+        }
+
+        public static RomanNumber Mult(String rn1, String rn2)
+        {
+
+            return RomanNumber.Mult(RomanNumber.Parse(rn1), RomanNumber.Parse(rn2));
+        }
+
     }
 }
