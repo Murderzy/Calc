@@ -49,7 +49,8 @@ namespace Calc.App
                     }
                     flag = false;
                 }
-                catch { Console.WriteLine("Некорректный ввод"); }
+                catch(ArgumentNullException) { Console.WriteLine("System error. Program termunated"); }
+                catch (ArgumentException ex) { Console.WriteLine(ex.Message); }
             } while (flag);
             flag = true;
             do
@@ -67,7 +68,8 @@ namespace Calc.App
                     }
                     flag = false;
                 }
-                catch { Console.WriteLine("Некорректный ввод"); }
+                catch (ArgumentNullException) { Console.WriteLine("System error. Program termunated"); }
+                catch (ArgumentException ex) { Console.WriteLine(ex.Message); }
             } while (flag);
 
             //if (Int32.TryParse(val1, out number1))  //  проверяем пользователь ввел число или строку, если true - число
