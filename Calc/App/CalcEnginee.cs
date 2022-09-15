@@ -21,28 +21,72 @@ namespace Calc.App
 
         private static void GetNumbers()
         {
-           String val1 = UserInterface.Number();
-           String val2 = UserInterface.Number();
+            String val1;
+            String val2;
+
+            //do {
+            //    val1 = UserInterface.Number();
+            //} while (val1 == null || val1 =="" );
 
 
-
-            if (Int32.TryParse(val1, out number1))  //  проверяем пользователь ввел число или строку, если true - число
+            //do
+            //{
+            //    val2 = UserInterface.Number();
+            //} while (val2 == null || val2 == "");
+            bool flag = true;
+            do
             {
+                try
+                {
+                    val1 = UserInterface.Number();
+                    if (Int32.TryParse(val1, out number1))  //  проверяем пользователь ввел число или строку, если true - число
+                    {
 
-            }
-            else
+                    }
+                    else
+                    {
+                        number1 = RomanNumber.Parse(val1);  // строку парсим в число
+                    }
+                    flag = false;
+                }
+                catch { Console.WriteLine("Некорректный ввод"); }
+            } while (flag);
+            flag = true;
+            do
             {
-                number1 = RomanNumber.Parse(val1);  // строку парсим в число
-            }
+                try
+                {
+                    val2 = UserInterface.Number();
+                    if (Int32.TryParse(val2, out number2))  //  проверяем пользователь ввел число или строку, если true - число
+                    {
 
-            if (Int32.TryParse(val2, out number2))  //  проверяем пользователь ввел число или строку, если true - число
-            {
+                    }
+                    else
+                    {
+                        number2 = RomanNumber.Parse(val2);  // строку парсим в число
+                    }
+                    flag = false;
+                }
+                catch { Console.WriteLine("Некорректный ввод"); }
+            } while (flag);
 
-            }
-            else
-            {
-                number2 = RomanNumber.Parse(val2);  // строку парсим в число
-            }
+            //if (Int32.TryParse(val1, out number1))  //  проверяем пользователь ввел число или строку, если true - число
+            //{
+
+            //}
+            //else
+            //{
+            //    number1 = RomanNumber.Parse(val1);  // строку парсим в число
+            //}
+
+            //if (Int32.TryParse(val2, out number2))  //  проверяем пользователь ввел число или строку, если true - число
+            //{
+
+            //}
+            //else
+            //{
+            //    number2 = RomanNumber.Parse(val2);  // строку парсим в число
+            //}
         }
 
         public static void GetRezult()
