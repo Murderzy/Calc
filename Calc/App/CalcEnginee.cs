@@ -10,8 +10,8 @@ namespace Calc.App
     // класс отвечающий за работу калькулятора, его "движок"
     public static class CalcEnginee
     {
-        private static int number1;
-        private static int number2;
+        private static RomanNumber number1;
+        private static RomanNumber number2;
         private static String operation;
 
         private static void GetOperation()
@@ -26,24 +26,17 @@ namespace Calc.App
             String val1;
             String val2;
 
-            
+
             bool flag = true;
             do
             {
                 try
                 {
                     val1 = UserInterface.Number();
-                    if (Int32.TryParse(val1, out number1))  //  проверяем пользователь ввел число или строку, если true - число
-                    {
-
-                    }
-                    else
-                    {
-                        number1 = RomanNumber.Parse(val1);  // строку парсим в число
-                    }
+                    number1 = new RomanNumber(val1);
                     flag = false;
                 }
-                catch(ArgumentNullException) { Console.WriteLine("System error. Program termunated"); }
+                catch (ArgumentNullException) { Console.WriteLine("System error. Program termunated"); }
                 catch (ArgumentException ex) { Console.WriteLine(ex.Message); }
             } while (flag);
             flag = true;
@@ -52,30 +45,23 @@ namespace Calc.App
                 try
                 {
                     val2 = UserInterface.Number();
-                    if (Int32.TryParse(val2, out number2))  //  проверяем пользователь ввел число или строку, если true - число
-                    {
-
-                    }
-                    else
-                    {
-                        number2 = RomanNumber.Parse(val2);  // строку парсим в число
-                    }
+                    number2 = new RomanNumber(val2);
                     flag = false;
                 }
                 catch (ArgumentNullException) { Console.WriteLine("System error. Program termunated"); }
                 catch (ArgumentException ex) { Console.WriteLine(ex.Message); }
             } while (flag);
 
-            
+
         }
 
         public static void GetRezult()
         {
             switch(operation)
             {
-                case "+": Console.WriteLine($"{new RomanNumber(number1).ToString()} + {new RomanNumber(number2).ToString()} = {(RomanNumber.Add(number1, number2)).ToString()}"); break;  //  выводим результат выбранной операции
-                case "*": Console.WriteLine($"{new RomanNumber(number1).ToString()} * {new RomanNumber(number2).ToString()} = {(RomanNumber.Mult(number1, number2)).ToString()}"); break;  //  выводим результат выбранной операции  //  выводим результат выбранной операции
-                case "-": Console.WriteLine($"{new RomanNumber(number1).ToString()} - {new RomanNumber(number2).ToString()} = {(RomanNumber.Sub(number1, number2)).ToString()}"); break;  //  выводим результат выбранной операции
+                case "+": Console.WriteLine($"{number1.ToString()} + {number2.ToString()} = {(number1.Add(number2)).ToString()}"); break;  //  выводим результат выбранной операции
+                case "*": Console.WriteLine($"{number1.ToString()} * {number2.ToString()} = {(number1.Mult(number2)).ToString()}"); break;  //  выводим результат выбранной операции  //  выводим результат выбранной операции
+                case "-": Console.WriteLine($"{number1.ToString()} - {number2.ToString()} = {(number1.Sub(number2)).ToString()}"); break;  //  выводим результат выбранной операции
 
             }
 

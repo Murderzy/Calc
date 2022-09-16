@@ -15,7 +15,7 @@ namespace Calc.App
 
         public static void GetCulture()
         {
-            Console.WriteLine("Choose culture(defoult en-US): \n 1) en-US \n 2)uk-UA");
+            Console.WriteLine("Choose culture(default en-US): \n 1) en-US \n 2)uk-UA");
 
             String str = Console.ReadLine();
 
