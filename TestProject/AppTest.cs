@@ -331,14 +331,9 @@ namespace TestProject
             Assert.AreEqual(10, rn10.Value);
             Assert.AreEqual(13, rn13.Value);
         }
-    }
-
-    [TestClass]
-    public class UserInterfaceTest
-    {
 
         [TestMethod]
-        public void UIOperationsTest()
+        public void SubtractionStaticObjectTest()
         {
             //тесты для фабричного метода с object параметрами
             object number1 = 2;
@@ -348,21 +343,23 @@ namespace TestProject
             object str2 = "I";
             object str3 = "IV";
 
-            RomanNumber rn5 = RomanNumber.Add(number1, number2);
-            RomanNumber rn8 = RomanNumber.Add(rn5, number2);
-            RomanNumber rn10 = RomanNumber.Add(str2, str1);
-            RomanNumber rn9 = RomanNumber.Add(rn5, str3);
-            RomanNumber rn13 = RomanNumber.Add(rn5, rn8);
+            
+            RomanNumber rn5 = RomanNumber.Sub(number1, number2); //-1
+            RomanNumber rn8 = RomanNumber.Sub(rn5, number2); //  -4
+            RomanNumber rn10 = RomanNumber.Sub(str2, str1); // -8
+            RomanNumber rn9 = RomanNumber.Sub(rn5, str3); //  -5
+            RomanNumber rn13 = RomanNumber.Sub(rn5, rn8); // -3
 
 
-            Assert.AreEqual(5, rn5.Value);
-            Assert.AreEqual(8, rn8.Value);
-            Assert.AreEqual(9, rn9.Value);
-            Assert.AreEqual(10, rn10.Value);
-            Assert.AreEqual(13, rn13.Value);
+            Assert.AreEqual(-1, rn5.Value);
+            Assert.AreEqual(-4, rn8.Value);
+            Assert.AreEqual(-5, rn9.Value);
+            Assert.AreEqual(-8, rn10.Value);
+            Assert.AreEqual(3, rn13.Value);
         }
-
     }
+
+   
 
 }
 

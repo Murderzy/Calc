@@ -31,13 +31,13 @@ namespace Calc.App
             }
             throw new Exception("Unsupported culture");
         }
-        public static String GetInvalidTypeMessage(int objNumber, String type, String? culture = null)
+        public static String GetInvalidTypeMessage( String type, String? culture = null)
         {
             culture = culture ?? Culture;
             switch  (culture) 
             {
-                case "uk-UA": return $"obj{objNumber}: тип '{type}' не підтримується";
-                case "en-US": return $"obj{objNumber}: type '{type}' unsupported";
+                case "uk-UA": return $"тип '{type}' не підтримується";
+                case "en-US": return $"type '{type}' unsupported";
             }
             throw new Exception("Unsupported culture");
         }

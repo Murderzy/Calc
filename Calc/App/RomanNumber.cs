@@ -32,6 +32,18 @@ namespace Calc.App
             this._value = val;
         }
 
+        public RomanNumber(object obj)
+        {
+            if (obj is null) throw new ArgumentNullException($"obj");
+
+
+
+            if (obj is int val) this._value = val;
+            else if (obj is String str) this._value = Parse(str);
+            else if (obj is RomanNumber rn) this._value = rn._value;
+            else throw new ArgumentException(Resources.GetInvalidTypeMessage(obj.GetType().ToString()));
+        }
+
         public override string ToString()
         {
             if (this._value == 0)
@@ -308,57 +320,57 @@ namespace Calc.App
 
         public static RomanNumber Add(object obj1, object obj2)
         {
-            var rns = new RomanNumber[] { null!, null! };
-            var pars = new object[] { obj1, obj2 };
+
+            var rn1 = (obj1 is RomanNumber r1) ? r1 : new RomanNumber(obj1);
+            var rn2 = (obj2 is RomanNumber r2) ? r2 : new RomanNumber(obj2);
+            return rn1.Add(rn2);
+            
+        }
 
 
 
-            for (int i = 0; i < 2; i++)
+        //  sub RomanNumber object
+
+        public RomanNumber Sub(RomanNumber rn)
+        {
+            if (rn is null)
             {
-                if (pars[i] is null) throw new ArgumentNullException($"obj{i + 1}");
-
-
-
-                if (pars[i] is int val) rns[i] = new RomanNumber(val);
-                else if (pars[i] is String str) rns[i] = new RomanNumber(Parse(str));
-                else if (pars[i] is RomanNumber rn) rns[i] = rn;
-                else throw new ArgumentException(App.Resources.GetInvalidTypeMessage(i+1, pars[i].GetType().Name));
+                throw new ArgumentNullException();
             }
 
-
-
-            return rns[0].Add(rns[1]);
             
+            return new RomanNumber(this.Add(rn.Value * (-1)));
+        }
+
+        public static RomanNumber Sub(object obj1, object obj2)
+        {
+
+            var rn1 = (obj1 is RomanNumber r1) ? r1 : new RomanNumber(obj1);
+            var rn2 = (obj2 is RomanNumber r2) ? r2 : new RomanNumber(obj2);
+            return rn1.Sub(rn2);
+
         }
 
         //  умножение римских чисел
 
-        public static RomanNumber Mult(int rn1, int rn2)
+        public RomanNumber Mult(RomanNumber rn)
         {
-            RomanNumber rn = new();
-            rn.Value = rn1 * rn2;
-            return rn;
+            if (rn is null)
+            {
+                throw new ArgumentNullException();
+            }
+
+
+            return new RomanNumber(this.Value * rn.Value);
         }
 
-        public static RomanNumber Mult(RomanNumber rn1, RomanNumber rn2)
-        {
-            return RomanNumber.Mult(rn1.Value, rn2.Value);
-        }
-
-        public static RomanNumber Mult(RomanNumber rn1, int rn2)
-        {
-            return RomanNumber.Mult(rn1.Value, rn2);
-        }
-
-        public static RomanNumber Mult(RomanNumber rn1, String rn2)
-        {
-            return RomanNumber.Mult(rn1.Value, RomanNumber.Parse(rn2));
-        }
-
-        public static RomanNumber Mult(String rn1, String rn2)
+        public static RomanNumber Mult(object obj1, object obj2)
         {
 
-            return RomanNumber.Mult(RomanNumber.Parse(rn1), RomanNumber.Parse(rn2));
+            var rn1 = (obj1 is RomanNumber r1) ? r1 : new RomanNumber(obj1);
+            var rn2 = (obj2 is RomanNumber r2) ? r2 : new RomanNumber(obj2);
+            return rn1.Mult(rn2);
+
         }
 
     }
