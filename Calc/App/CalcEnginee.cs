@@ -68,7 +68,34 @@ namespace Calc.App
             
         }
 
-        public static void Work()
+        public static RomanNumber EvalExpression(String expression)
+        {
+            var Operations = new String[] { "+", "-" };
+
+
+
+            String[] parts = expression.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length != 3)
+            {
+                throw new ArgumentException("Invalid expression");
+            }
+            if (Array.IndexOf(Operations, parts[1]) == -1)
+            {
+                throw new ArgumentException("Invalid operation");
+            }
+            RomanNumber rn1 = new(RomanNumber.Parse(parts[0]));
+            RomanNumber rn2 = new(RomanNumber.Parse(parts[2]));
+            RomanNumber res =
+                parts[1] == Operations[0]
+                ? rn1.Add(rn2)
+                : rn1.Sub(rn2);
+
+
+
+            return res;
+        }
+
+        public static void Work1()    //  первый вариант
         {
             //  собираем все методы для работы калькулятора
 
@@ -76,6 +103,34 @@ namespace Calc.App
             GetOperation();
             GetNumbers();
             GetRezult();
+        }  
+
+        public static void Work2()    //  второй вариант
+        {
+            UserInterface.GetCulture();
+            // GetOperation();
+            // GetNumbers();
+            // GetRezult();
+
+            String? userInput;
+            RomanNumber res = null!;
+            do
+            {
+                Console.Write("Enter expression (like XC + CD): ");
+                userInput = Console.ReadLine() ?? "";
+                try
+                {
+                    res = EvalExpression(userInput);
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            } while (res is null);
+
+
+
+            Console.WriteLine($"{userInput} = {res}");
         }
 
     }

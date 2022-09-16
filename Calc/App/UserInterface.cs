@@ -40,7 +40,7 @@ namespace Calc.App
             {
                 case "uk-UA": Console.WriteLine("Введіть операцію: ");break;
                 case "en-US": Console.WriteLine("Enter operation: ");break;
-                default: throw new Exception("Unsupported culture");
+                default: throw new Exception(Resources.GetInvalidCulture());
             }
 
             
@@ -51,7 +51,7 @@ namespace Calc.App
 
             if(ind == -1)
             {
-                throw new ArgumentException("Unsupported operation"); //  иначе исключение
+                throw new ArgumentException(Resources.GetInvalidOperator()); //  иначе исключение
             }
 
             oper = temp;

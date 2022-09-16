@@ -21,6 +21,28 @@ namespace Calc.App
             throw new Exception("Unsupported culture");
         }
 
+        public static String GetInvalidOperator(String? culture = null)
+        {
+            if (culture == null) culture = Culture;
+            switch (culture)
+            {
+                case "uk-UA": return "Операция невозможна";
+                case "en-US": return "Unsupported operation";
+            }
+            throw new Exception("Unsupported culture");
+        }
+
+        public static String GetInvalidCulture(String? culture = null)
+        {
+            if (culture == null) culture = Culture;
+            switch (culture)
+            {
+                case "uk-UA": return "Не поддерживается";
+                case "en-US": return "Unsupported culture";
+            }
+            throw new Exception("Unsupported culture");
+        }
+
         public static String GetInvalidCharMessage(char c, String? culture = null)
         {
             culture ??= Culture;
