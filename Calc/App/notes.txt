@@ -346,3 +346,34 @@ Mercurial -- Bitbucket
 		- получчаем "место внедрения" (точку иньекции) зависимости.
 	3) находим точку через которую проходят все программные инструкции (Main), в этой точке создаем объекты ресурсов и внедряем зависимости 
 	в точку иньекции
+
+
+
+
+
+	------------
+
+	bool flag = true;
+            do
+            {
+                try
+                {
+                    val1 = UserInterface.Number();
+                    number1 = new RomanNumber(val1);
+                    flag = false;
+                }
+                catch(ArgumentNullException) { Console.WriteLine("System error. Program termunated"); }
+                catch (ArgumentException ex) { Console.WriteLine(ex.Message); }
+            } while (flag);
+            flag = true;
+            do
+            {
+                try
+                {
+                    val2 = UserInterface.Number();
+                    number2 = new RomanNumber(val2);
+                    flag = false;
+                }
+                catch (ArgumentNullException) { Console.WriteLine("System error. Program termunated"); }
+                catch (ArgumentException ex) { Console.WriteLine(ex.Message); }
+            } while (flag);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,21 @@ namespace Calc.App
     public static class UserInterface
     {
         public static String Culture { get; set; } = "en-US";
+
+        public static void GetCulture()
+        {
+            Console.WriteLine("Choose culture(defoult en-US): \n 1) en-US \n 2)uk-UA");
+
+            String str = Console.ReadLine();
+
+            switch(str)
+            {
+                case "1": Culture = "en-US"; break;
+                case "2": Culture = "uk-UA"; break;
+            }
+
+           
+        }
 
         public static String Operator(String? culture = null)
         {
