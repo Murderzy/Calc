@@ -117,6 +117,8 @@ namespace Calc.App
             do
             {
                 Console.Write("Enter expression (like XC + CD): ");
+
+
                 userInput = Console.ReadLine() ?? "";
                 try
                 {

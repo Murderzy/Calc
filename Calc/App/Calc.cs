@@ -10,7 +10,7 @@ namespace Calc.App
     {
         public void Run ()
         {
-            CalcEnginee.Work2();
+            CalcEnginee.Work1();
         }
     }
 }

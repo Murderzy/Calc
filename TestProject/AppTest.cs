@@ -323,7 +323,7 @@ namespace TestProject
             RomanNumber rn10 = RomanNumber.Add(str2, str1);
             RomanNumber rn9 = RomanNumber.Add(rn5, str3);
             RomanNumber rn13 = RomanNumber.Add(rn5, rn8);
-           
+
 
             Assert.AreEqual(5, rn5.Value);
             Assert.AreEqual(8, rn8.Value);
@@ -343,7 +343,7 @@ namespace TestProject
             object str2 = "I";
             object str3 = "IV";
 
-            
+
             RomanNumber rn5 = RomanNumber.Sub(number1, number2); //-1
             RomanNumber rn8 = RomanNumber.Sub(rn5, number2); //  -4
             RomanNumber rn10 = RomanNumber.Sub(str2, str1); // -8
@@ -357,9 +357,46 @@ namespace TestProject
             Assert.AreEqual(-8, rn10.Value);
             Assert.AreEqual(3, rn13.Value);
         }
-    }
 
-   
+
+        [TestMethod]
+        public void MultStaticObjectTest()
+        {
+            //тесты для фабричного метода с object параметрами
+            object number1 = 2;
+            object number2 = 3;
+
+            object str1 = "IX";
+            object str2 = "I";
+            object str3 = "IV";
+
+
+            RomanNumber rn5 = RomanNumber.Mult(number1, number2); //  6
+            RomanNumber rn8 = RomanNumber.Mult(rn5, number2); //  18
+            RomanNumber rn10 = RomanNumber.Mult(str2, str1); // 9
+            RomanNumber rn9 = RomanNumber.Mult(rn5, str3); //  24
+            RomanNumber rn13 = RomanNumber.Mult(rn5, rn8); // -3
+
+
+            Assert.AreEqual(6, rn5.Value);
+            Assert.AreEqual(18, rn8.Value);
+            Assert.AreEqual(24, rn9.Value);
+            Assert.AreEqual(9, rn10.Value);
+            Assert.AreEqual(108, rn13.Value);
+        }
+
+
+
+        [TestMethod]
+        public void EvalTest()
+        {
+
+            Assert.IsNotNull(CalcEnginee.EvalExpression("XI + IV"));
+            //Assert.AreEqual(new RomanNumber(10), CalcEnginee.EvalExpression("XI - I"));
+            Assert.ThrowsException<ArgumentException>(() => CalcEnginee.EvalExpression("2 + 3"));
+        }
+
+    }
 
 }
 

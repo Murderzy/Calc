@@ -28,6 +28,8 @@ namespace Calc.App
            
         }
 
+
+
         public static String Operator(String? culture = null)
         {
             String oper = "";
@@ -38,8 +40,8 @@ namespace Calc.App
             
             switch(culture)
             {
-                case "uk-UA": Console.WriteLine("Введіть операцію: ");break;
-                case "en-US": Console.WriteLine("Enter operation: ");break;
+                case "uk-UA": Console.WriteLine("Введіть операцію (+ , - , *) : ");break;
+                case "en-US": Console.WriteLine("Enter operation: (+ , - , *) : ");break;
                 default: throw new Exception(Resources.GetInvalidCulture());
             }
 
