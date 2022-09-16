@@ -375,5 +375,25 @@ namespace Calc.App
 
         //divide RomanNumber
 
+
+        public RomanNumber Divide(RomanNumber rn)
+        {
+            if (rn is null)
+            {
+                throw new ArgumentNullException();
+            }
+
+
+            return new RomanNumber(this.Value / rn.Value);
+        }
+
+        public static RomanNumber Divide(object obj1, object obj2)
+        {
+
+            var rn1 = (obj1 is RomanNumber r1) ? r1 : new RomanNumber(obj1);
+            var rn2 = (obj2 is RomanNumber r2) ? r2 : new RomanNumber(obj2);
+            return rn1.Divide(rn2);
+
+        }
     }
 }
